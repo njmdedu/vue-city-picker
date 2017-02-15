@@ -1,50 +1,76 @@
 <template>
-  <div id="app">
-    <h1>{{msg}}</h1>
+<div id="app">
     <city-picker></city-picker>
-  </div>
+</div>
 </template>
 
 <script>
 import Citypicker from './assets/components/City-picker.vue';
 export default {
-  name: 'app',
-  components:{
-    'city-picker':Citypicker
-  },
-  data () {
-    return {
-      msg: 'Welcome to Your Vue.js App'
+    name: 'app',
+    components: {
+        'city-picker': Citypicker
+    },
+    data() {
+        return {
+            msg: 'Vue-CityPicker'
+        }
     }
-  }
 }
 </script>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@media only screen and (min-width: 320px) {
+    html {
+        font-size: 12px !important;
+        /*10 ÷ 16 × 100% = 62.5%*/
+    }
 }
 
-h1, h2 {
-  font-weight: normal;
+@media only screen and (min-width: 370px) {
+    html {
+        font-size: 13px !important;
+    }
+}
+
+@media only screen and (min-width: 410px) {
+    html {
+        font-size: 15px !important;
+    }
+}
+
+@media only screen and (min-width: 481px) {
+    html {
+        font-size: 23px !important;
+    }
+}
+
+body {
+    font-family: '黑体';
+    background-color: #f8f8f8;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+h1,
+h2 {
+    font-weight: normal;
 }
 
 ul {
-  list-style-type: none;
-  padding: 0;
+    list-style-type: none;
+    padding: 0;
 }
 
 li {
-  display: inline-block;
-  margin: 0 10px;
+    display: inline-block;
+    margin: 0 10px;
 }
 
 a {
-  color: #42b983;
+    color: #42b983;
 }
 </style>
