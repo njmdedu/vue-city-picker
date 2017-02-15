@@ -47,7 +47,6 @@ export default {
 
 body {
     font-family: '黑体';
-    background-color: #f8f8f8;
 }
 
 * {
@@ -72,5 +71,8 @@ li {
 
 a {
     color: #42b983;
+}
+#app{
+  background: #fff;
 }
 </style>
