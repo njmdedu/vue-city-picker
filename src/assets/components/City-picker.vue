@@ -2,22 +2,22 @@
   <div class="root">
     <div class="col province">
       <ul>
-        <li v-for="province in getProvinces()">
+        <li v-for="province in provinces" @click="selectCitysByProvinceCode(province.code)">
           <span class="txt">{{province.name}}</span>
         </li>
       </ul>
     </div>
-    <div class="col city">
+    <div class="col city" >
       <ul>
-        <li v-for="province in getProvinces()">
-          <span class="txt">{{province.name}}</span>
+        <li v-for="city in citys" @click="selectDistrictsByCityCode(city.code)">
+          <span class="txt">{{city.name}}</span>
         </li>
       </ul>
     </div>
     <div class="col district">
       <ul>
-        <li v-for="province in getProvinces()">
-          <span class="txt">{{province.name}}</span>
+        <li v-for="district in districts">
+          <span class="txt">{{district.name}}</span>
         </li>
       </ul>
     </div>
@@ -29,21 +29,58 @@ import citydata from './../city-datas'
 export default {
     data() {
         return {
-            citydata: citydata.citydata
+            citydata: citydata.citydata,
+            provinces:[{
+              name:'请选择'
+            }],
+            citys:[{
+              name:'请选择'
+            }],
+            districts:[{
+              name:'请选择'
+            }]
         }
     },
+    created(){
+      var that = this;
+      $.each(that.citydata, function(index, obj) {
+          that.provinces.push({
+              name: obj.name,
+              code: obj.code,
+              sub: obj.sub
+          });
+      });
+    },
     methods: {
-        getProvinces() {
-            var procinces = [];
-            console.log(citydata)
-            $.each(this.citydata, function(index, obj) {
-                procinces.push({
-                    name: obj.name,
-                    code: obj.code,
-                    sub: obj.sub
-                });
-            });
-            return procinces;
+        selectCitysByProvinceCode(code) {
+          let that = this;
+          $.each(that.provinces,function(index, obj){
+                if(obj.code === code){
+                  $.each(obj.sub,function(i,o){
+                    that.citys.push({
+                      name : o.name,
+                      code : o.code,
+                      sub : o.sub
+                    });
+                  })
+                  return false;
+                }
+              });
+        },
+        selectDistrictsByCityCode(code) {
+          let that = this;
+          $.each(that.citys,function(index, obj){
+               if(obj.code === code){
+                 $.each(obj.sub,function(i,o){
+                   that.districts.push({
+                     name : o.name,
+                     code : o.code,
+                     sub : o.sub
+                   });
+                 })
+                 return false;
+               }
+             });
         }
     }
 }
@@ -72,7 +109,10 @@ export default {
   }
 
   .province ul li,.city ul li,.district ul li{
-    float: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    white-space: nowrap;
   }
 
   .province ul li .txt,.city ul li .txt,.district ul li .txt{
