@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Citypicker from './assets/components/City-picker.vue';
+import Citypicker from './assets/components/city-picker.vue';
 export default {
     name: 'app',
     components: {

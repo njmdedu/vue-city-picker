@@ -45,7 +45,11 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#eval-source-map'
+  devtool: '#eval-source-map',
+  //不打包vue文件
+  externals: {
+        'vue': 'Vue',
+      }
 }
 
 if (process.env.NODE_ENV === 'production') {
