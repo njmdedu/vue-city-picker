@@ -27,7 +27,7 @@
 <script>
 import citydata from './../city-datas'
 export default {
-    props: ['msg'],
+    //props: ['msg'],
     data() {
         return {
             citydata: citydata.citydata,
@@ -49,7 +49,6 @@ export default {
         }
     },
     created(){
-      alert(this.msg)
       var that = this;
 
       that.provinces.push({
@@ -81,12 +80,27 @@ export default {
             code:''
           }
         },
+        setCodes(){
+          var codes = [];
+          if (this.activeProvince.code&&this.activeProvince.code!=0) {
+            codes.push(this.activeProvince.code);
+          }
+          if(this.activeCity.code&&this.activeCity.code!=0) {
+            codes.push(this.activeCity.code);
+          }
+          if(this.activeDistrict.code&&this.activeDistrict.code!=0) {
+            codes.push(this.activeDistrict.code);
+          }
+          return codes.join(',');
+        },
         selectCitysByProvinceCode(province) {
           let that = this;
           that.activeProvince = province;
           that.resetCity();
           that.resetDistrict();
+          that.$emit('setRootCodes',that.setCodes());
           if (province.code==0) {
+            that.$emit('closeModal');
             return;
           }
           that.citys.push({
@@ -112,7 +126,9 @@ export default {
           let that = this;
           that.resetDistrict();
           that.activeCity=city;
+          that.$emit('setRootCodes',that.setCodes());
           if (city.code==0) {
+            that.$emit('closeModal');
             return;
           }
           that.districts.push({
@@ -136,6 +152,8 @@ export default {
         },
         selectDistrict(district){
           this.activeDistrict=district;
+          this.$emit('setRootCodes',this.setCodes());
+          this.$emit('closeModal');
         }
     }
 }
