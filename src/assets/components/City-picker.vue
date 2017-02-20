@@ -160,13 +160,10 @@ export default {
 </script>
 
 <style lang="css">
-body {
-    font-family: '黑体';
-}
-
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 h1,
