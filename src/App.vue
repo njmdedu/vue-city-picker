@@ -22,7 +22,6 @@ export default {
       },
       setRootCodes(codes){
         this.codes = codes;
-        test();
       }
     }
 }
