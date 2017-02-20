@@ -18,7 +18,7 @@ export default {
     },
     methods:{
       closeModal(){
-        $.closePopup();
+        //$.closePopup();
       },
       setRootCodes(codes){
         this.codes = codes;
