@@ -18,12 +18,11 @@ export default {
     },
     methods:{
       closeModal(){
-        //$.closePopup();
         closeModal();
       },
       setRootCodes(codes){
         this.codes = codes;
-        getCodes();
+        getCodes(codes);
       }
     }
 }
