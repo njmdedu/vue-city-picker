@@ -83,15 +83,24 @@ export default {
         setCodes(){
           var codes = [];
           if (this.activeProvince.code&&this.activeProvince.code!=0) {
-            codes.push(this.activeProvince.code);
+            codes.push({
+              code:this.activeProvince.code,
+              name:this.activeProvince.name
+            });
           }
           if(this.activeCity.code&&this.activeCity.code!=0) {
-            codes.push(this.activeCity.code);
+            codes.push({
+              code:this.activeCity.code,
+              name:this.activeCity.name
+            });
           }
           if(this.activeDistrict.code&&this.activeDistrict.code!=0) {
-            codes.push(this.activeDistrict.code);
+            codes.push({
+              code:this.activeDistrict.code,
+              name:this.activeDistrict.name
+            });
           }
-          return codes.join(',');
+          return codes;
         },
         selectCitysByProvinceCode(province) {
           let that = this;
@@ -186,6 +195,7 @@ a {
 }
   .root{
     width: 100%;
+    height:100%;
     display: flex;
     align-items: center;
   }

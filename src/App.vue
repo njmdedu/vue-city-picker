@@ -1,6 +1,6 @@
 <template>
 <div id="app">
-    <city-picker @closeModal='closeModal' @setRootCodes='setRootCodes' v-bind:data-codes="codes"></city-picker>
+    <city-picker @closeModal='closeModal' @setRootCodes='setRootCodes'></city-picker>
 </div>
 </template>
 
@@ -19,9 +19,11 @@ export default {
     methods:{
       closeModal(){
         //$.closePopup();
+        closeModal();
       },
       setRootCodes(codes){
         this.codes = codes;
+        getCodes();
       }
     }
 }
